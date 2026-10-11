@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: doubao2api
+    env: python
+    plan: free
+    region: singapore
+    buildCommand: pip install -e .
+    startCommand: python -m doubao2api.server
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
+      - key: SESSION_DIR
+        value: /data/sessions
+    disk:
+      - name: session-storage
+        mountPath: /data
+        sizeGB: 1
